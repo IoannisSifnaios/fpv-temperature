@@ -2,10 +2,10 @@
 
 This repository contains Python implementations of various FPV models from the literature. Specifically, the included models are:
 
-* Lindholm [1]
-* Rahaman [2]
-* Kamuyu [3]
-* Hayibo [4]
+* [Lindholm](scripts/Lindholm.py) [1]
+* [Rahaman](scripts/Rahaman.py) [2]
+* [Kamuyu](scripts/Kamuyu.py) [3]
+* [Hayibo](scripts/Hayibo.py) [4]
 
 Additionally, there are functions for estimating the [thermal properties of water and air](scripts/properties.py)
 
