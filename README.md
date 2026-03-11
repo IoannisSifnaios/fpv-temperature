@@ -9,6 +9,23 @@ This repository contains Python implementations of various FPV models from the l
 
 Additionally, there are functions for estimating the [thermal properties of water and air](scripts/properties.py)
 
+## Example usage
+
+```python
+import pvlib
+from hayibo import hayibo
+data, meta = pvlib.iotools.get_pvgis_hourly(
+    latitude=55.5, longitude=11.2,
+    start=2023, end=2023,
+    surface_azimuth=180, surface_tilt=20)
+
+# Make up some water tempeature data
+temp_water = 15 * np.ones(data.shape[0])
+data['poa_global'] = data[['poa_direct', 'poa_sky_diffuse', 'poa_ground_diffuse']].sum(axis=1)
+# Calculate FPV panel temperature
+temperature = hayibo(data['temp_air'], data['poa_global'], temp_water)
+```
+
 ## References
 [1] Lindholm et al., 2021, Heat loss coefficients computed for floating PV modules, [DOI](https://doi.org/10.1002/pip.3451)<br>
 [2] Rahaman et al., 2023, Floating photovoltaic module temperature estimation: Modeling and comparison, [DOI](https://doi.org/10.1016/j.renene.2023.03.076)<br>
